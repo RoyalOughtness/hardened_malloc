@@ -1,0 +1,25 @@
+{
+  extends: [
+    'config:best-practices',
+  ],
+  customManagers: [
+    {
+      customType: 'regex',
+      managerFilePatterns: [
+        '/\\.spec$/',
+      ],
+      matchStrings: [
+        '#\\s?renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s*Version:\\s*(?<currentValue>\\S+)',
+        '#\\s?renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\s*%global \\S+ (?<currentValue>\\S+)\\s*%global \\S+ (?<currentDigest>[0-9a-f]{40})',
+      ],
+    },
+  ],
+  packageRules: [
+    {
+      matchDepNames: [
+        'GrapheneOS/hardened_malloc',
+      ],
+      groupName: 'hardened_malloc',
+    },
+  ],
+}
